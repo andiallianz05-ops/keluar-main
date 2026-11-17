@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JejakBackpacker - Admin & Explorer Dashboard</title>
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Sidebar / Navigasi Samping -->
+    <aside class="sidebar">
+      <div class="brand">
+        <i class="fa-solid fa-compass"></i>
+        <span>Jejak<b>Backpacker</b></span>
+      </div>
+      <nav class="menu">
+        <a href="#dashboard" class="menu-item active"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+        <a href="#destinasi" class="menu-item"><i class="fa-solid fa-mountain-sun"></i> Destinasi</a>
+        <a href="#kalkulator" class="menu-item"><i class="fa-solid fa-calculator"></i> Kalkulator Budget</a>
+        <a href="#gear" class="menu-item"><i class="fa-solid fa-campground"></i> Gear Checklist</a>
+      </nav>
+      <div class="user-profile">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200" alt="Avatar">
+        <div class="user-info">
+          <h4>Alex Kelana</h4>
+          <span>Pro Backpacker</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content / Main Area -->
+    <main class="main-content">
+      <!-- Top Navbar -->
+      <header class="top-nav">
+        <div class="search-bar">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" placeholder="Cari gunung, curug, atau tips...">
+        </div>
+        <div class="top-actions">
+          <button class="btn-primary" onclick="tambahDestinasiModal()"><i class="fa-solid fa-plus"></i> Tambah Trip</button>
+        </div>
+      </header>
+
+      <!-- Stats Cards / Ringkasan Dashboard -->
+      <section id="dashboard" class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon green"><i class="fa-solid fa-route"></i></div>
+          <div class="stat-details">
+            <h3>14 Spot</h3>
+            <p>Jalur Jelajah Alam</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon orange"><i class="fa-solid fa-wallet"></i></div>
+          <div class="stat-details">
+            <h3>Rp150rb</h3>
+            <p>Rata-rata Budget Trip</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon blue"><i class="fa-solid fa-users"></i></div>
+          <div class="stat-details">
+            <h3>1.2k</h3>
+            <p>Anggota Komunitas</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Destinasi Grid & Filter -->
+      <section id="destinasi" class="section-block">
+        <div class="section-header">
+          <h2>Eksplorasi Destinasi</h2>
+          <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterDestinasi('all')">Semua</button>
+            <button class="filter-btn" onclick="filterDestinasi('Mudah')">Mudah</button>
+            <button class="filter-btn" onclick="filterDestinasi('Sedang')">Sedang</button>
+          </div>
+        </div>
+
+        <div class="card-grid" id="destinasiGrid">
+          <!-- Card 1 -->
+          <div class="card-item" data-level="Mudah">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb');">
+              <span class="badge badge-easy">Mudah</span>
+            </div>
+            <div class="card-body">
+              <h3>Camping Gunung Prau</h3>
+              <p class="location"><i class="fa-solid fa-location-dot"></i> Dieng, Jawa Tengah</p>
+              <div class="budget-tag">Estimasi: <b>Rp120.000</b></div>
+              <ul class="detail-list">
+                <li><i class="fa-solid fa-ticket"></i> Simaksi: Rp25.000</li>
+                <li><i class="fa-solid fa-motorcycle"></i> Ojek Basecamp: Rp20.000</li>
+                <li><i class="fa-solid fa-utensils"></i> Logistik: Rp75.000</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="card-item" data-level="Sedang">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1434394354979-a235cd36269d');">
+              <span class="badge badge-medium">Sedang</span>
+            </div>
+            <div class="card-body">
+              <h3>Curug Cikaso</h3>
+              <p class="location"><i class="fa-solid fa-location-dot"></i> Sukabumi, Jawa Barat</p>
+              <div class="budget-tag">Estimasi: <b>Rp110.000</b></div>
+              <ul class="detail-list">
+                <li><i class="fa-solid fa-ticket"></i> Tiket: Rp10.000</li>
+                <li><i class="fa-solid fa-ship"></i> Perahu: Rp60.000</li>
+                <li><i class="fa-solid fa-utensils"></i> Makan: Rp40.000</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Fitur Interaktif: Kalkulator Budget & Checklist Gear -->
+      <div class="two-column">
+        <!-- Kalkulator Budget Interaktif -->
+        <section id="kalkulator" class="section-block widget">
+          <h3><i class="fa-solid fa-calculator"></i> Hitung Biaya Trip Kamu</h3>
+          <form id="calcForm" class="calc-form">
+            <div class="input-group">
+              <label>Ongkos Transportasi (Rp)</label>
+              <input type="number" id="transportCost" value="50000">
+            </div>
+            <div class="input-group">
+              <label>Tiket Masuk / Simaksi (Rp)</label>
+              <input type="number" id="ticketCost" value="25000">
+            </div>
+            <div class="input-group">
+              <label>Makan & Logistik (Rp)</label>
+              <input type="number" id="foodCost" value="75000">
+            </div>
+            <div class="calc-result">
+              <span>Total Estimasi Per Orang:</span>
+              <h2 id="totalResult">Rp150.000</h2>
+            </div>
+          </form>
+        </section>
+
+        <!-- Gear Checklist Interaktif -->
+        <section id="gear" class="section-block widget">
+          <h3><i class="fa-solid fa-campground"></i> Gear Checklist</h3>
+          <ul class="checklist" id="checklist">
+            <li>
+              <input type="checkbox" id="g1">
+              <label for="g1">Tenda Lightweight & Flysheet</label>
+            </li>
+            <li>
+              <input type="checkbox" id="g2">
+              <label for="g2">Sleeping Bag & Matras</label>
+            </li>
+            <li>
+              <input type="checkbox" id="g3">
+              <label for="g3">Kompor Lapangan & Gas</label>
+            </li>
+            <li>
+              <input type="checkbox" id="g4">
+              <label for="g4">Headlamp & Baterai Cadangan</label>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
